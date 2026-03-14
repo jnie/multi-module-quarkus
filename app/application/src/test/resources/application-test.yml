@@ -1,0 +1,16 @@
+quarkus:
+  application:
+    name: multi-module-quarkus-test
+  http:
+    port: 8081
+  rest-client:
+    advice-slip:
+      url: https://api.adviceslip.com
+      connect-timeout: 15000
+      read-timeout: 30000
+  log:
+    level: INFO
+
+mma:
+  cache:
+    enabled: false

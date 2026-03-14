@@ -1,0 +1,27 @@
+quarkus:
+  application:
+    name: multi-module-quarkus
+  http:
+    port: 8081
+  smallrye-openapi:
+    info-title: Multi-Module Quarkus API
+    info-version: 1.0.0
+    info-description: Clean Architecture with Quarkus and Mutiny
+  rest-client:
+    advice-slip:
+      url: https://api.adviceslip.com
+      connect-timeout: 15000
+      read-timeout: 30000
+
+mma:
+  cache:
+    enabled: false
+
+"%dev":
+  quarkus:
+    http:
+      port: 8081
+    log:
+      level: DEBUG
+    live-reload:
+      instrumentation: true
