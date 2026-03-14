@@ -1,0 +1,55 @@
+version: 2
+
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Copenhagen"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "java"
+    reviewers:
+      - "jnie"
+    assignees:
+      - "jnie"
+    groups:
+      quarkus:
+        patterns:
+          - "io.quarkus:*"
+          - "io.quarkus.platform:*"
+        update-types:
+          - "minor"
+          - "patch"
+      test-dependencies:
+        patterns:
+          - "org.junit.jupiter:*"
+          - "org.assertj:*"
+          - "org.mockito:*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Copenhagen"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "github-actions"
+      - "dependencies"
+    reviewers:
+      - "jnie"
+    assignees:
+      - "jnie"
