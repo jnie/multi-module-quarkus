@@ -1,7 +1,10 @@
 package dk.jnie.example.advice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.jnie.example.advice.client.AdviceSlipClient;
 import dk.jnie.example.advice.mappers.AdviceObjectMapper;
+import dk.jnie.example.advice.model.AdviceResponse;
 import dk.jnie.example.domain.model.MultiAggregate;
 import dk.jnie.example.domain.outbound.AdviceApi;
 import dk.jnie.example.domain.repository.CacheRepository;
@@ -19,6 +22,7 @@ public class AdviceApiImpl implements AdviceApi {
     private static final Logger log = LoggerFactory.getLogger(AdviceApiImpl.class);
     private static final String CACHE_KEY = "advice:random";
 
+    private final ObjectMapper objectMapper;
     private final AdviceObjectMapper mapper;
     private final AdviceSlipClient adviceClient;
     private final CacheRepository cacheRepository;
@@ -26,10 +30,12 @@ public class AdviceApiImpl implements AdviceApi {
 
     @Inject
     public AdviceApiImpl(
+            ObjectMapper objectMapper,
             AdviceObjectMapper mapper,
             @RestClient AdviceSlipClient adviceClient,
             CacheRepository cacheRepository,
             @ConfigProperty(name = "mma.cache.enabled", defaultValue = "false") boolean cacheEnabled) {
+        this.objectMapper = objectMapper;
         this.mapper = mapper;
         this.adviceClient = adviceClient;
         this.cacheRepository = cacheRepository;
@@ -67,7 +73,18 @@ public class AdviceApiImpl implements AdviceApi {
     private Uni<MultiAggregate> fetchFromApi() {
         log.info("Calling the advice API");
         return adviceClient.getRandomAdvice()
+                .onItem().transform(this::parseResponse)
                 .onItem().transform(mapper::toDomain)
                 .onFailure().invoke(e -> log.error("Failed to call advice API", e));
+    }
+
+    private AdviceResponse parseResponse(String json) {
+        try {
+            log.debug("Parsing advice response: {}", json);
+            return objectMapper.readValue(json, AdviceResponse.class);
+        } catch (JsonProcessingException e) {
+            log.error("Failed to parse advice response: {}", e.getMessage());
+            return null;
+        }
     }
 }
