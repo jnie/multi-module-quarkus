@@ -1,9 +1,9 @@
-# multi-module-architecture
+# multi-module-quarkus
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/jnie/multi-module-architecture)
+[![CI Build](https://github.com/jnie/multi-module-quarkus/actions/workflows/ci.yml/badge.svg)](https://github.com/jnie/multi-module-quarkus/actions/workflows/ci.yml)
 [![Maven Central](https://img.shields.io/badge/Maven-3.9+-blue)](https://maven.apache.org/)
 [![Java](https://img.shields.io/badge/Java-21+-blue)](https://www.java.com/)
-[![Quarkus](https://img.shields.io/badge/Quarkus-3.15.x-ff69b4)](https://quarkus.io/)
+[![Quarkus](https://img.shields.io/badge/Quarkus-3.18.x-ff69b4)](https://quarkus.io/)
 
 
 ## Architecture Overview
@@ -17,14 +17,14 @@ This demonstrates a practical implementation of domain-driven design with clear 
 
 ```bash
 # Clone the repository
-git clone https://github.com/jnie/multi-module-architecture.git
-cd multi-module-architecture
+git clone https://github.com/jnie/multi-module-quarkus.git
+cd multi-module-quarkus
 
 # Build the project
-./mvnw clean install
+mvn clean install
 
 # Run the application
-./mvnw quarkus:dev -pl app/application
+mvn quarkus:dev -pl app/application
 ```
 
 ## Technology Stack
@@ -32,7 +32,7 @@ cd multi-module-architecture
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | Java | 21+ | Programming language |
-| Quarkus | 3.15.x | Application framework |
+| Quarkus | 3.18.x | Application framework |
 | Maven | 3.9+ | Build tool |
 | Immutables | 2.12.1 | Immutable value objects |
 | MapStruct | 1.6.3 | Object mapping |
@@ -99,10 +99,10 @@ app/
 
 ```bash
 # Build all modules
-./mvnw clean package
+mvn clean package
 
 # Run the application
-./mvnw quarkus:dev -pl app/application
+mvn quarkus:dev -pl app/application
 ```
 
 ### Accessing the Application
@@ -113,11 +113,7 @@ The REST API is available at: `http://localhost:8081/q/swagger-ui/`
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/v1/advices` | Get all advice slips |
-| GET | `/api/v1/advices/random` | Get a random advice slip |
-| GET | `/api/v1/advices/{id}` | Get advice by ID |
-| POST | `/api/v1/advices/search` | Search for advice by keyword |
-| GET | `/api/v1/advices/search/{query}` | Search for advice (GET variant) |
+| POST | `/api/v1/advice` | Get random advice |
 
 ## Integration
 
