@@ -7,7 +7,8 @@ import dk.jnie.example.domain.model.DomainResponse;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Service implementation for advice retrieval.
@@ -41,8 +42,9 @@ import lombok.extern.slf4j.Slf4j;
  * @see OurService
  */
 @ApplicationScoped
-@Slf4j
 public class OurServiceImpl implements OurService {
+
+    private static final Logger log = LoggerFactory.getLogger(OurServiceImpl.class);
     
     private final AdviceApi adviceAPI;
     

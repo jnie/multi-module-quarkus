@@ -1,14 +1,5 @@
 package dk.jnie.example.advice.model;
 
-import lombok.Data;
-
-@Data
-public class AdviceResponse {
-    private Slip slip;
-
-    @Data
-    public static class Slip {
-        private Long sl_id;
-        private String advice;
-    }
+public record AdviceResponse(Slip slip) {
+    public record Slip(Long sl_id, String advice) {}
 }

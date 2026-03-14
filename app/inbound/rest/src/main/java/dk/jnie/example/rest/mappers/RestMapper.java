@@ -14,7 +14,7 @@ public class RestMapper {
             return null;
         }
         return DomainRequest.builder()
-                .question(dto.getQuestion())
+                .question(dto.question())
                 .build();
     }
 
@@ -22,8 +22,6 @@ public class RestMapper {
         if (response == null) {
             return null;
         }
-        ResponseDto dto = new ResponseDto();
-        dto.setAnswer(response.getAnswer());
-        return dto;
+        return new ResponseDto(response.getAnswer());
     }
 }

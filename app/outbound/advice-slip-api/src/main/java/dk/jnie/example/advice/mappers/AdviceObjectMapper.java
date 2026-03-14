@@ -8,11 +8,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class AdviceObjectMapper {
 
     public MultiAggregate toDomain(AdviceResponse response) {
-        if (response == null || response.getSlip() == null) {
+        if (response == null || response.slip() == null) {
             return MultiAggregate.builder().answer("No advice available").build();
         }
         return MultiAggregate.builder()
-                .answer(response.getSlip().getAdvice())
+                .answer(response.slip().advice())
                 .build();
     }
 }

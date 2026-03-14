@@ -42,7 +42,7 @@ multi-module-architecture/
 1. **Always check existing modules first** - Understand the architecture before making changes
 2. **Keep the module boundaries clean** - Don't mix concerns across modules
 3. **Domain layer should be vendor-agnostic** - No framework annotations in domain/
-4. **Use Lombok and MapStruct** - Already configured in POMs
+4. **Use Immutables and MapStruct** - Already configured in POMs
 5. **main branch** - is off limits, when changing code always create a branch
 6. **Run tests before committing** - Use `./mvnw test`
 7. **Port/adapter pattern** - External APIs go in `app/outbound/`, interfaces in `app/domain/`
@@ -60,8 +60,8 @@ multi-module-architecture/
 - In tests, use Mockito `@Mock` per-instance stubs; avoid static state mutation.
 - Add brief comments for tricky logic (explain WHY, not WHAT).
 - Keep files under ~500 LOC; extract helpers instead of "V2" copies.
+- Immutables: use `@Value.Immutable` with `*Def` interface pattern; generates immutable implementations.
 - MapStruct: use interfaces with `componentModel = "cdi"`; don't manually implement mappers.
-- Lombok: avoid `@Data` on JPA entities; prefer `@Value`, `@Builder`, `@RequiredArgsConstructor`.
 - Reactive: avoid `.block()` in WebFlux code paths; embrace reactive patterns.
 - Naming: follow Quarkus/CDI conventions (`@ApplicationScoped`, `@Singleton`, `@Path`, `@Inject`).
 
@@ -108,7 +108,7 @@ When you are tasked with a feature or bug fix, follow this exact sequence:
 ./mvnw quarkus:dev -pl app/application
 ```
 
-**Problem:** MapStruct/Lombok conflicts
+**Problem:** MapStruct/Immutables conflicts
 ```bash
 # Ensure annotation processor order is correct (already configured in pom.xml)
 # If issues persist, run:

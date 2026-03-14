@@ -34,7 +34,7 @@ cd multi-module-architecture
 | Java | 21+ | Programming language |
 | Quarkus | 3.15.x | Application framework |
 | Maven | 3.9+ | Build tool |
-| Lombok | Latest | Code generation |
+| Immutables | 2.12.1 | Immutable value objects |
 | MapStruct | 1.6.3 | Object mapping |
 | Quarkus OpenAPI | Latest | API documentation |
 | H2 Database | Latest | In-memory database |

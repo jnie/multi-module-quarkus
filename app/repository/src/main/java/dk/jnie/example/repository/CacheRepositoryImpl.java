@@ -3,20 +3,20 @@ package dk.jnie.example.repository;
 import dk.jnie.example.domain.repository.CacheRepository;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Slf4j
 @ApplicationScoped
 public class CacheRepositoryImpl implements CacheRepository {
 
+    private static final Logger log = LoggerFactory.getLogger(CacheRepositoryImpl.class);
+
     private final Map<String, CacheEntry> cache = new ConcurrentHashMap<>();
 
-    @Inject
     public CacheRepositoryImpl() {
         log.info("In-memory cache repository initialized");
     }

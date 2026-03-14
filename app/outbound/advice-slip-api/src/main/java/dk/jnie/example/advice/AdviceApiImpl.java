@@ -8,16 +8,17 @@ import dk.jnie.example.domain.repository.CacheRepository;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-@Slf4j
 @ApplicationScoped
 public class AdviceApiImpl implements AdviceApi {
 
+    private static final Logger log = LoggerFactory.getLogger(AdviceApiImpl.class);
     private static final String CACHE_KEY = "advice:random";
 
     private final AdviceObjectMapper mapper;
