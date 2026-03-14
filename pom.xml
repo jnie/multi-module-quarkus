@@ -4,14 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <parent>
-        <groupId>io.quarkus.platform</groupId>
-        <artifactId>quarkus-bom</artifactId>
-        <version>3.18.4</version>
-        <type>pom</type>
-        <relativePath/>
-    </parent>
-    
     <groupId>dk.jnie.example</groupId>
     <artifactId>multi-module-quarkus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -36,6 +28,7 @@
         <compiler-plugin.version>3.13.0</compiler-plugin.version>
         <surefire-plugin.version>3.5.2</surefire-plugin.version>
         <failsafe-plugin.version>3.5.2</failsafe-plugin.version>
+        <quarkus.platform.version>3.18.4</quarkus.platform.version>
         
         <lombok.version>1.18.36</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -45,6 +38,14 @@
     
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.quarkus.platform</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
             <dependency>
                 <groupId>dk.jnie.example</groupId>
                 <artifactId>domain</artifactId>
@@ -68,6 +69,11 @@
             <dependency>
                 <groupId>dk.jnie.example</groupId>
                 <artifactId>advice-slip-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dk.jnie.example</groupId>
+                <artifactId>application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             
@@ -120,6 +126,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${compiler-plugin.version}</version>
                     <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.projectlombok</groupId>

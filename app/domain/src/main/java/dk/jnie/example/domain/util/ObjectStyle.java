@@ -18,8 +18,7 @@ import java.lang.annotation.Target;
     of = "of",
     allMandatoryParameters = true,
     allParameters = true,
-    strictBuilder = true,
-    strictModularity = true
+    strictBuilder = true
 )
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)

@@ -9,13 +9,13 @@ This document tracks the migration from `multi-module-architecture` (Spring Boot
 | Parent | ✅ | N/A | Complete |
 | Domain | ✅ | ✅ (7/7) | Complete |
 | Service | ✅ | ✅ (1/1) | Complete |
-| Repository | ✅ | ⏳ (0/1) | Pending |
-| Outbound | ✅ | ⏳ (0/4) | Pending |
-| Inbound/REST | ✅ | ⏳ (0/4) | Pending |
-| Application | ✅ | ⏳ (0/2) | Pending |
-| Arch-Tests | ✅ | ⏳ (0/1) | Pending |
-| Documentation | ⏳ | N/A | Pending |
-| Git Init | ⏳ | N/A | Pending |
+| Repository | ✅ | ✅ (1/1) | Complete |
+| Outbound | ✅ | ✅ (4/4) | Complete |
+| Inbound/REST | ✅ | ✅ (4/4) | Complete |
+| Application | ✅ | ✅ (2/2) | Complete |
+| Arch-Tests | ✅ | ✅ (1/1) | Complete |
+| Documentation | ✅ | N/A | Complete |
+| Git Init | ✅ | N/A | Complete |
 
 ---
 
