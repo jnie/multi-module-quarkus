@@ -13,8 +13,6 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-
 @ApplicationScoped
 public class AdviceApiImpl implements AdviceApi {
 
@@ -23,14 +21,14 @@ public class AdviceApiImpl implements AdviceApi {
 
     private final AdviceObjectMapper mapper;
     private final AdviceSlipClient adviceClient;
-    private final Optional<CacheRepository> cacheRepository;
+    private final CacheRepository cacheRepository;
     private final boolean cacheEnabled;
 
     @Inject
     public AdviceApiImpl(
             AdviceObjectMapper mapper,
             @RestClient AdviceSlipClient adviceClient,
-            Optional<CacheRepository> cacheRepository,
+            CacheRepository cacheRepository,
             @ConfigProperty(name = "mma.cache.enabled", defaultValue = "false") boolean cacheEnabled) {
         this.mapper = mapper;
         this.adviceClient = adviceClient;
@@ -40,7 +38,7 @@ public class AdviceApiImpl implements AdviceApi {
 
     @Override
     public Uni<MultiAggregate> getRandomAdvice() {
-        if (cacheEnabled && cacheRepository.isPresent()) {
+        if (cacheEnabled) {
             return getFromCache()
                     .onItem().ifNull().switchTo(fetchAndCache());
         }
@@ -48,7 +46,7 @@ public class AdviceApiImpl implements AdviceApi {
     }
 
     private Uni<MultiAggregate> getFromCache() {
-        return cacheRepository.get().get(CACHE_KEY)
+        return cacheRepository.get(CACHE_KEY)
                 .onItem().transform(cached -> {
                     if (cached != null) {
                         log.info("Retrieved advice from cache");
@@ -61,7 +59,7 @@ public class AdviceApiImpl implements AdviceApi {
     private Uni<MultiAggregate> fetchAndCache() {
         return fetchFromApi()
                 .onItem().transformToUni(aggregate ->
-                        cacheRepository.get().put(CACHE_KEY, aggregate.getAnswer())
+                        cacheRepository.put(CACHE_KEY, aggregate.getAnswer())
                                 .onItem().transform(ignored -> aggregate)
                 );
     }
