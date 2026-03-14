@@ -25,14 +25,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build project
-        run: ./mvnw clean compile -B
+      - name: Build and install project
+        run: ./mvnw clean install -DskipTests -B
 
       - name: Run tests
         run: ./mvnw test -B
-
-      - name: Run architecture tests
-        run: ./mvnw test -pl app/architecture-tests -B
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
