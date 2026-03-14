@@ -21,10 +21,10 @@ git clone https://github.com/jnie/multi-module-quarkus.git
 cd multi-module-quarkus
 
 # Build the project
-mvn clean install
+./mvnw clean install
 
 # Run the application
-mvn quarkus:dev -pl app/application
+./mvnw quarkus:dev -pl app/application
 ```
 
 ## Technology Stack
@@ -99,10 +99,10 @@ app/
 
 ```bash
 # Build all modules
-mvn clean package
+./mvnw clean package
 
 # Run the application
-mvn quarkus:dev -pl app/application
+./mvnw quarkus:dev -pl app/application
 ```
 
 ### Accessing the Application

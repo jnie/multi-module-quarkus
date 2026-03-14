@@ -26,13 +26,13 @@ jobs:
           cache: maven
 
       - name: Build project
-        run: mvn clean compile -B
+        run: ./mvnw clean compile -B
 
       - name: Run tests
-        run: mvn test -B
+        run: ./mvnw test -B
 
       - name: Run architecture tests
-        run: mvn test -pl app/architecture-tests -B
+        run: ./mvnw test -pl app/architecture-tests -B
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
