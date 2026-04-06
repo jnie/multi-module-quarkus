@@ -28,7 +28,7 @@
         <compiler-plugin.version>3.15.0</compiler-plugin.version>
         <surefire-plugin.version>3.5.5</surefire-plugin.version>
         <failsafe-plugin.version>3.5.5</failsafe-plugin.version>
-        <quarkus.platform.version>3.32.4</quarkus.platform.version>
+        <quarkus.platform.version>3.34.2</quarkus.platform.version>
         
         <mapstruct.version>1.6.3</mapstruct.version>
         <immutables.version>2.12.1</immutables.version>
