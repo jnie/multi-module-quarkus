@@ -32,7 +32,7 @@
         
         <mapstruct.version>1.6.3</mapstruct.version>
         <immutables.version>2.12.1</immutables.version>
-        <archunit.version>1.4.1</archunit.version>
+        <archunit.version>1.4.2</archunit.version>
     </properties>
     
     <dependencyManagement>
