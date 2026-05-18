@@ -31,7 +31,7 @@
         <quarkus.platform.version>3.32.4</quarkus.platform.version>
         
         <mapstruct.version>1.6.3</mapstruct.version>
-        <immutables.version>2.12.1</immutables.version>
+        <immutables.version>2.12.2</immutables.version>
         <archunit.version>1.4.1</archunit.version>
     </properties>
     
